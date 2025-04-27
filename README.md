@@ -73,4 +73,4 @@ The API needs to be able to do the following:
     
    - 5. Clarification
       While implementing services had many questions, in real time first I could have discussed with PO or BA
-      So that there won't be any design issues
+      So that there is concreate decision with design
