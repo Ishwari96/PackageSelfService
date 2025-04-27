@@ -1,23 +1,29 @@
 package com.abnamro.packageservice.service;
 
 
+import com.abnamro.packageservice.model.ShippingOrder;
 import com.abnamro.packageservice.model.Users;
-import com.abnamro.packageservice.repository.PackageServiceRepository;
-import org.springframework.stereotype.Service;
+import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
 
 import java.util.List;
 
-@Service
-public class PackageSelfService {
+/**
+ *  Package service
+ */
+public interface PackageSelfService {
 
-
-    PackageServiceRepository packageServiceRepository;
     /**
-     * Get All
-     * @return the all
+     *  Get all users or employees
+     * @return list of available employee
      */
-    public List<Users> getAll() {
-        return packageServiceRepository.findAll();
-    }
+    List<Users> getAllUsers();
+
+    /**
+     * Creates the order and returns the order created.
+     *
+     * @param order ShippingOrder the shipping order
+     * @return the ShippingOrderSuccessResponse
+     */
+    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws Exception;
 
 }

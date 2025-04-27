@@ -1,14 +1,17 @@
 package com.abnamro.packageservice.controller;
 
-import com.abnamro.packageservice.handler.PackageServiceHandler;
+
+import com.abnamro.packageservice.model.ShippingOrder;
+import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
 import com.abnamro.packageservice.model.Users;
+import com.abnamro.packageservice.service.PackageSelfService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,14 +21,24 @@ import java.util.List;
 public class PackageServiceController {
 
     @Autowired
-    PackageServiceHandler packageServiceHandler;
+    PackageSelfService packageSelfService;
 
-    @GetMapping
-    public ResponseEntity<List<Users>> getAllUsers() {
-        try {
-            return ResponseEntity.ok(packageServiceHandler.getAllUsers());
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    @GetMapping("/employees")
+    public List<Users> getAllUsers() {
+            return packageSelfService.getAllUsers();
         }
+
+
+    /**
+     * This method creates order with given request body
+     *
+     * @param shippingOrder the shipping request
+     * @return the shipping order details
+     */
+    @PostMapping
+    public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
+
     }
 }
