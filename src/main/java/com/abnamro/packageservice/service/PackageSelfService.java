@@ -1,6 +1,7 @@
 package com.abnamro.packageservice.service;
 
 
+import com.abnamro.packageservice.exception.PackageServiceException;
 import com.abnamro.packageservice.model.ShippingOrder;
 import com.abnamro.packageservice.model.Users;
 import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
@@ -24,6 +25,6 @@ public interface PackageSelfService {
      * @param order ShippingOrder the shipping order
      * @return the ShippingOrderSuccessResponse
      */
-    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws Exception;
+    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws PackageServiceException;
 
 }

@@ -1,6 +1,8 @@
 package com.abnamro.packageservice.service;
 
 import com.abnamro.packageservice.client.PackageShippingFeignClient;
+import com.abnamro.packageservice.client.errordecoder.ShippingServiceErrorDecoder;
+import com.abnamro.packageservice.exception.PackageServiceException;
 import com.abnamro.packageservice.model.ShippingOrder;
 import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
 import com.abnamro.packageservice.model.Users;
@@ -32,12 +34,12 @@ public class PackageSelfServiceImpl implements PackageSelfService{
         return packageServiceRepository.findAll();
     }
 
-    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order) throws Exception {
+    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order) throws PackageServiceException {
         Response response = shippingClient.createShippingOrder(order);
         //manually call the error decoder here as we need to handle response manually; ShippingServiceErrorDecoder is not automatically invoked in this case.
         if(response.status() != 201){
-           //TODO ShippingServiceErrorDecoder errorDecoder = new ShippingServiceErrorDecoder();
-           // throw errorDecoder.decode("createShippingOrder", response);
+           ShippingServiceErrorDecoder errorDecoder = new ShippingServiceErrorDecoder();
+           throw errorDecoder.decode("createShippingOrder", response);
         }
         ShippingOrderSuccessResponse successResponse =   new ShippingOrderSuccessResponse();
         successResponse.setOrderPath(response.headers().get(ORDER_LOCATION_HEADER).iterator().next());

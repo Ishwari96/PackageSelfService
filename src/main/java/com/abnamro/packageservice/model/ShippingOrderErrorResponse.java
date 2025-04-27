@@ -1,6 +1,6 @@
 package com.abnamro.packageservice.model;
 
-import com.abnamro.packageselfservice.exception.PackageServiceError;
+import com.abnamro.packageservice.exception.PackageServiceError;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

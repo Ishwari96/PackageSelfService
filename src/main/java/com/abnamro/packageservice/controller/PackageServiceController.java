@@ -1,6 +1,7 @@
 package com.abnamro.packageservice.controller;
 
 
+import com.abnamro.packageservice.exception.PackageServiceException;
 import com.abnamro.packageservice.model.ShippingOrder;
 import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
 import com.abnamro.packageservice.model.Users;
@@ -23,11 +24,14 @@ public class PackageServiceController {
     @Autowired
     PackageSelfService packageSelfService;
 
+    /**
+     * Get all available employees for now
+     * @return list of users
+     */
     @GetMapping("/employees")
     public List<Users> getAllUsers() {
             return packageSelfService.getAllUsers();
         }
-
 
     /**
      * This method creates order with given request body
@@ -38,7 +42,11 @@ public class PackageServiceController {
     @PostMapping
     public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
+        } catch (PackageServiceException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
