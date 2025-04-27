@@ -1,0 +1,34 @@
+		{
+		"orderDetails": [
+		{
+			"packageId": "123456",
+			"packageName": "ABN Amro Gift",
+			"packageSize": "S",
+			"postalCode": "1111AB",
+			"streetName":  "Amstel Laan" ,
+			"receiverName": "John",
+			"orderStatus": "IN_PROGRESS",
+			"expectedDeliveryDate": "05-05-2025"
+		 },
+		 {
+			"packageId": "5566778",
+			"packageName": "Christmas Gift ",
+			"packageSize": "M",
+			"postalCode": "55555AB",
+			"streetName":  "Utrecht Laan",
+			"receiverName": "Daniel",
+			"orderStatus": "IN_PROGRESS",
+			"expectedDeliveryDate": "09-05-2025"
+		 },
+		 {
+			"packageId": "7788999",
+			"packageName": "New Year Gift",
+			"packageSize": "L",
+			"postalCode": "77777AB",
+			"streetName":  "Belgium Road", 
+			"receiverName": "Olivier",
+			"orderStatus": "IN_PROGRESS",
+			"expectedDeliveryDate": "10-05-2025"
+		 }
+		]
+		}

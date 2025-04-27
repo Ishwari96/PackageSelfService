@@ -1,0 +1,10 @@
+{
+ "status": 409,	
+ "message": "Conflict Error",
+ "errors":[
+ {
+   "field" : "packageName",
+   "message": "Package name already taken. Use a different one."
+ }
+ ]
+}
