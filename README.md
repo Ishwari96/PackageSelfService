@@ -24,6 +24,7 @@ Now the application is build to run. Use following command to run spring boot ap
 ```
 mvn spring-boot:run
 
+```
 
 ## Assignment
 Create a Web Service with a REST API to be used by the __PackageSelfService__ front-end team.  
@@ -47,3 +48,29 @@ The API needs to be able to do the following:
   - Date of registration.
   - Package status.
   - Date of receipt (when status is DELIVERED)
+
+```
+
+## In real time
+
+- To implement the features you mentioned in real-time, we can break down the tasks into several steps:
+
+   - 1. Java 21/24
+      My local setup was alinged with Java 17 so decided to focus on requirement or delivery first
+   
+   - 2. Customizable User or Employee Details
+      Database Setup: Use PostgreSQL for persistent data storage.
+      Frontend Integration: Create a user interface for users to input and update their details.
+      
+   - 3. Database Configuration
+      H2 Database used for Demo: for initial setup and testing.
+      PostgreSQL for Production: we can configure PostgreSQL for production use to ensure data persistence.
+      
+   - 4. Docker Image Submission
+      Dockerfile Creation: Write a Dockerfile to containerize the application.
+      Docker Compose: Docker Compose to manage multi-container applications.
+      Image Submission: Push the Docker image to a repository like Docker Hub.
+    
+   - 5. Clarification
+      While implementing services had many questions, in real time first I could have discussed with PO or BA
+      So that there won't be any design issues
