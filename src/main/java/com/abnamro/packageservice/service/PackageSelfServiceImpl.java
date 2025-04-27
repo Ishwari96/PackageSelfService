@@ -3,9 +3,7 @@ package com.abnamro.packageservice.service;
 import com.abnamro.packageservice.client.PackageShippingFeignClient;
 import com.abnamro.packageservice.client.errordecoder.ShippingServiceErrorDecoder;
 import com.abnamro.packageservice.exception.PackageServiceException;
-import com.abnamro.packageservice.model.ShippingOrder;
-import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
-import com.abnamro.packageservice.model.Users;
+import com.abnamro.packageservice.model.*;
 import com.abnamro.packageservice.repository.PackageServiceRepository;
 import feign.Response;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +21,9 @@ public class PackageSelfServiceImpl implements PackageSelfService{
     @Autowired
     private final PackageShippingFeignClient shippingClient;
 
+    /*public PackageSelfServiceImpl(PackageShippingFeignClient shippingClient) {
+       this.shippingClient = shippingClient;
+   }*/
 
     PackageServiceRepository packageServiceRepository;
 
@@ -45,6 +47,14 @@ public class PackageSelfServiceImpl implements PackageSelfService{
         successResponse.setOrderPath(response.headers().get(ORDER_LOCATION_HEADER).iterator().next());
         successResponse.setMessage("Order created successfully");
         return successResponse;
+    }
+
+    public Optional<ShippingOrderDetail> findOrderById(long orderId) {
+        return shippingClient.findOrderById(orderId);
+    }
+
+    public ShippingOrderDetailResponse listOrders(OrderCriteria orderCriteria) {
+        return shippingClient.listOrders(orderCriteria.getStatus(), orderCriteria.getOffset(), orderCriteria.getLimit());
     }
 
 }

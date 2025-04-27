@@ -2,11 +2,10 @@ package com.abnamro.packageservice.service;
 
 
 import com.abnamro.packageservice.exception.PackageServiceException;
-import com.abnamro.packageservice.model.ShippingOrder;
-import com.abnamro.packageservice.model.Users;
-import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
+import com.abnamro.packageservice.model.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *  Package service
@@ -26,5 +25,20 @@ public interface PackageSelfService {
      * @return the ShippingOrderSuccessResponse
      */
     public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws PackageServiceException;
+
+    /**
+     * return all orders based on order criteria
+     * @param orderCriteria OrderCriteria
+     * @return ShippingOrderDetailResponse
+     */
+    public ShippingOrderDetailResponse listOrders(OrderCriteria orderCriteria);
+
+    /**
+     * Find by id.
+     *
+     * @param orderId the order id
+     * @return the optional
+     */
+    public Optional<ShippingOrderDetail> findOrderById(long orderId);
 
 }

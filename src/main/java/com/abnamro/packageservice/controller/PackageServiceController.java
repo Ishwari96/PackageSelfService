@@ -2,9 +2,7 @@ package com.abnamro.packageservice.controller;
 
 
 import com.abnamro.packageservice.exception.PackageServiceException;
-import com.abnamro.packageservice.model.ShippingOrder;
-import com.abnamro.packageservice.model.ShippingOrderSuccessResponse;
-import com.abnamro.packageservice.model.Users;
+import com.abnamro.packageservice.model.*;
 import com.abnamro.packageservice.service.PackageSelfService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -15,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "PackageServiceController", description = "Create, update, package shipping")
 @RestController
@@ -49,4 +48,34 @@ public class PackageServiceController {
         }
 
     }
+
+    /**
+     * Retrieves a list of all shipping-order-details
+     * @param status
+     * @param offset
+     * @param limit
+     * @return List of shipping-order-details
+     */
+    @GetMapping
+    public ResponseEntity<ShippingOrderDetailResponse> getAllOrders(@RequestParam(required = false) String status,
+                                                                    @RequestParam(required = false) Integer offset,
+                                                                    @RequestParam(required = false) Integer limit) {
+
+        return ResponseEntity.ok(packageSelfService.listOrders(new OrderCriteria(status, offset, limit)));
+    }
+
+    /**
+     * Retrieves the details for an order
+     * @param orderId
+     * @return Order Details
+     */
+    @GetMapping("/{orderId}")
+    public ResponseEntity<ShippingOrderDetail> getOrderDetails(@Valid @PathVariable long orderId) {
+        Optional<ShippingOrderDetail> orderDetails = packageSelfService.findOrderById(orderId);
+        if (orderDetails.isEmpty()) {
+            throw new PackageServiceException("Package is not found for orderId=" + orderId, HttpStatus.NOT_FOUND.toString());
+        }
+        return ResponseEntity.ok(orderDetails.get());
+    }
+
 }

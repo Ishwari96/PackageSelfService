@@ -25,7 +25,19 @@ Now the application is build to run. Use following command to run spring boot ap
 mvn spring-boot:run
 
 ```
+First Go to wireMock package and run wiremock as per mentioned in below screen print
+![img.png](img.png)
 
+Check shipping url service and application port is up and running i.e. 8443 and 8080 as per below screen print
+![img_1.png](img_1.png)
+
+```
+Swagger or open feign client is enabled and you can find URL 
+
+http://localhost:8443/swagger-ui/index.html#/
+
+```
+  
 ## Assignment
 Create a Web Service with a REST API to be used by the __PackageSelfService__ front-end team.  
 
@@ -74,3 +86,6 @@ The API needs to be able to do the following:
    - 5. Clarification
       While implementing services had many questions, in real time first I could have discussed with PO or BA
       So that there is concreate decision with design
+    
+   - 6. Postman Changes
+      To make collection production ready seperate collection and enviornment is added with DTAP URLs using variables
