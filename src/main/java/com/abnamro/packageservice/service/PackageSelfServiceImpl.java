@@ -13,18 +13,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service implementation class
+ */
 @Service
 @RequiredArgsConstructor
 public class PackageSelfServiceImpl implements PackageSelfService{
 
-
+    /** The feign client to call shipping service url. */
     @Autowired
     private final PackageShippingFeignClient shippingClient;
 
-    /*public PackageSelfServiceImpl(PackageShippingFeignClient shippingClient) {
-       this.shippingClient = shippingClient;
-   }*/
-
+    /** The package repository. */
+    @Autowired
     PackageServiceRepository packageServiceRepository;
 
     private static final String ORDER_LOCATION_HEADER = "Location";
@@ -36,6 +37,12 @@ public class PackageSelfServiceImpl implements PackageSelfService{
         return packageServiceRepository.findAll();
     }
 
+    /**
+     * Creates a new ShippingOrder
+     * @param order ShippingOrder the shipping order
+     * @return Shipping order response
+     * @throws PackageServiceException
+     */
     public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order) throws PackageServiceException {
         Response response = shippingClient.createShippingOrder(order);
         //manually call the error decoder here as we need to handle response manually; ShippingServiceErrorDecoder is not automatically invoked in this case.
@@ -49,10 +56,20 @@ public class PackageSelfServiceImpl implements PackageSelfService{
         return successResponse;
     }
 
+    /**
+     * List of shipping-order-details
+     * @param orderId the order id
+     * @return shipping order details
+     */
     public Optional<ShippingOrderDetail> findOrderById(long orderId) {
         return shippingClient.findOrderById(orderId);
     }
 
+    /**
+     * Retrieves a list of all shipping-order-details
+     * @param orderCriteria OrderCriteria
+     * @return Order detail response
+     */
     public ShippingOrderDetailResponse listOrders(OrderCriteria orderCriteria) {
         return shippingClient.listOrders(orderCriteria.getStatus(), orderCriteria.getOffset(), orderCriteria.getLimit());
     }

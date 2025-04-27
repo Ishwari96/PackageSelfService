@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/** controller for package shipping order service **/
 @Tag(name = "PackageServiceController", description = "Create, update, package shipping")
 @RestController
 @RequestMapping("/shippingOrders")
@@ -39,21 +40,17 @@ public class PackageServiceController {
      * @return the shipping order details
      */
     @PostMapping
-    public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) {
+    public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) throws PackageServiceException{
 
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
-        } catch (PackageServiceException e) {
-            throw new RuntimeException(e);
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
 
     }
 
     /**
      * Retrieves a list of all shipping-order-details
-     * @param status
-     * @param offset
-     * @param limit
+     * @param status status
+     * @param offset offset
+     * @param limit limit
      * @return List of shipping-order-details
      */
     @GetMapping

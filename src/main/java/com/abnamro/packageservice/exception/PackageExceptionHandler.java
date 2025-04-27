@@ -8,21 +8,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/** Globle package exception handler **/
 @ControllerAdvice
 public class PackageExceptionHandler {
 
-
+    /**
+     * Package Service Exception
+     * @param packageServiceException exe
+     * @return response
+     */
     @ExceptionHandler(PackageServiceException.class)
-    public ResponseEntity<String> handlePackageServiceException(PackageServiceException e) {
+    public ResponseEntity<String> handlePackageServiceException(PackageServiceException packageServiceException) {
 
-        return new ResponseEntity<>(getBodyAsString (e),  HttpStatusCode.valueOf(Integer.parseInt(e.getStatus())));
+        return new ResponseEntity<>(getBodyAsString (packageServiceException),  HttpStatusCode.valueOf(Integer.parseInt(packageServiceException.getStatus())));
     }
 
+    /**
+     * generic or globle exception
+     * @param exception exe
+     * @return response
+     */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<String> handleException(Exception exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
     private String getBodyAsString(PackageServiceException e) {
         try {

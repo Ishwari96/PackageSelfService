@@ -8,9 +8,15 @@ import feign.codec.ErrorDecoder;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-
+/** Shipping service error decoder class **/
 public class ShippingServiceErrorDecoder implements ErrorDecoder {
 
+    /**
+     * Package service exception decoder which will take exception from service and send the response
+     * @param methodKey with applicable key
+     * @param response from the client
+     * @return exception
+     */
     @Override
     public PackageServiceException decode(String methodKey, Response response) {
         PackageServiceException exception = new PackageServiceException(response.reason(), String.valueOf(response.status()));

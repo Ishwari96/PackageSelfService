@@ -1,9 +1,15 @@
 # PackageSelfService
-Abn assignment Monday submission 
+
+Application has 2 parts 
+1. The API for Package Self Service backend
+2. A wiremock server and mappings to simulate the Package Order Service
+
 
 Package Self service API
 -----
 ## Running the application
+
+This application has 2 parts service api and wiremock which stimulates the api
 
 Clone the repository to your local
 
@@ -11,6 +17,10 @@ Clone the repository to your local
 git clone https://github.com/Ishwari96/PackageSelfService.git
 
 ```
+To tun the wiremock server follow the instructions:
+
+First Go to wireMock package and run wiremock as per mentioned in below screen print
+![img.png](img.png)
 
 Go to root directory of the code. Run following command to run the application.
 
@@ -25,8 +35,6 @@ Now the application is build to run. Use following command to run spring boot ap
 mvn spring-boot:run
 
 ```
-First Go to wireMock package and run wiremock as per mentioned in below screen print
-![img.png](img.png)
 
 Check shipping url service and application port is up and running i.e. 8443 and 8080 as per below screen print
 ![img_1.png](img_1.png)
@@ -36,30 +44,7 @@ Swagger or open feign client is enabled and you can find URL
 
 http://localhost:8443/swagger-ui/index.html#/
 
-```
-  
-## Assignment
-Create a Web Service with a REST API to be used by the __PackageSelfService__ front-end team.  
-
-### Functional Requirements:
-The API needs to be able to do the following:
-- List available receivers.  
-  _For the sake of simplicity, you can hard-code a list of available users and their address details in your application._  
-
-- Submit Package for sending using the following parameters:
-  - Name of the package for future reference.
-  - Weight of the package to be sent in grams.
-  - Employee ID of the receiver.
-  - Employee ID of the sender.
-  
-- List all the package-details for a sender using the following parameters:
-  - Employee ID of the sender.
-  - Optional status-type.
-
-- List the details of an individual package.
-  - Date of registration.
-  - Package status.
-  - Date of receipt (when status is DELIVERED)
+![img_2.png](img_2.png)
 
 ```
 
@@ -89,3 +74,6 @@ The API needs to be able to do the following:
     
    - 6. Postman Changes
       To make collection production ready seperate collection and enviornment is added with DTAP URLs using variables
+
+   - 7. Security Integration Services
+      In order to make production ready application before merging it into master deploying it should scan via Nexus, fortify

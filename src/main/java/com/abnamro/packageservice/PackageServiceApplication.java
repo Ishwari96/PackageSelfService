@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+/**
+ * main class
+ */
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.abnamro.packageservice.repository")
 @EnableFeignClients(basePackages = "com.abnamro.packageservice.client")
