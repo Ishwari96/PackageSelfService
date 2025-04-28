@@ -26,7 +26,7 @@ public class ShippingServiceErrorDecoder implements ErrorDecoder {
             case 404:
             case 409:
             case 500 :  {
-                String responseDetails = null;
+                String responseDetails;
                 try{
                     if(response.body() != null){
                         //then take the message, status and errors from the body.

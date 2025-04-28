@@ -28,6 +28,7 @@ Go to root directory of the code. Run following command to run the application.
 mvn clean install
 
 ```
+![img_3.png](img_3.png)
 
 Now the application is build to run. Use following command to run spring boot application on command prompt.
 
@@ -53,7 +54,7 @@ http://localhost:8443/swagger-ui/index.html#/
 - To implement the features you mentioned in real-time, we can break down the tasks into several steps:
 
    - 1. Java 21/24
-      My local setup was alinged with Java 17 so decided to focus on requirement or delivery first
+      My local setup was aligned with Java 17 so decided to focus on requirement or delivery first
    
    - 2. Customizable User or Employee Details
       Database Setup: Use PostgreSQL for persistent data storage.
@@ -70,10 +71,10 @@ http://localhost:8443/swagger-ui/index.html#/
     
    - 5. Clarification
       While implementing services had many questions, in real time first I could have discussed with PO or BA
-      So that there is concreate decision with design
+      So that there is concrete decision with design
     
    - 6. Postman Changes
-      To make collection production ready seperate collection and enviornment is added with DTAP URLs using variables
+      To make collection production ready separate collection and environment is added with DTAP URLs using variables
 
    - 7. Security Integration Services
-      In order to make production ready application before merging it into master deploying it should scan via Nexus, fortify
+      In order to make production ready application before merging it into master deploying it should scan via SonarQube, Nexus, fortify

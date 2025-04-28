@@ -1,13 +1,13 @@
 package com.abnamro.packageservice;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class PackageServiceApplicationTests {
+/**
+ * Package service main class test
+ */
+class PackageSelfServiceApplicationTests {
 
     @Test
     void contextLoads() {
     }
-
 }

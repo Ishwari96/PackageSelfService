@@ -6,7 +6,6 @@ import com.abnamro.packageservice.model.*;
 import com.abnamro.packageservice.service.PackageSelfService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,23 +14,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-/** controller for package shipping order service **/
+/**
+ * controller for package shipping order service
+ **/
 @Tag(name = "PackageServiceController", description = "Create, update, package shipping")
 @RestController
 @RequestMapping("/shippingOrders")
 public class PackageServiceController {
 
-    @Autowired
+    final
     PackageSelfService packageSelfService;
+
+    public PackageServiceController(PackageSelfService packageSelfService) {
+        this.packageSelfService = packageSelfService;
+    }
 
     /**
      * Get all available employees for now
+     *
      * @return list of users
      */
     @GetMapping("/employees")
     public List<Users> getAllUsers() {
-            return packageSelfService.getAllUsers();
-        }
+        return packageSelfService.getAllUsers();
+    }
 
     /**
      * This method creates order with given request body
@@ -40,7 +46,7 @@ public class PackageServiceController {
      * @return the shipping order details
      */
     @PostMapping
-    public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) throws PackageServiceException{
+    public ResponseEntity<ShippingOrderSuccessResponse> createOrder(@Valid @RequestBody ShippingOrder shippingOrder) throws PackageServiceException {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(packageSelfService.createShippingOrder(shippingOrder));
 
@@ -48,9 +54,10 @@ public class PackageServiceController {
 
     /**
      * Retrieves a list of all shipping-order-details
+     *
      * @param status status
      * @param offset offset
-     * @param limit limit
+     * @param limit  limit
      * @return List of shipping-order-details
      */
     @GetMapping
@@ -63,7 +70,8 @@ public class PackageServiceController {
 
     /**
      * Retrieves the details for an order
-     * @param orderId
+     *
+     * @param orderId order id
      * @return Order Details
      */
     @GetMapping("/{orderId}")

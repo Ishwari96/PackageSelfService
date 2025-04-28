@@ -24,14 +24,14 @@ public interface PackageSelfService {
      * @param order ShippingOrder the shipping order
      * @return the ShippingOrderSuccessResponse
      */
-    public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws PackageServiceException;
+    ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order)  throws PackageServiceException;
 
     /**
      * return all orders based on order criteria
      * @param orderCriteria OrderCriteria
      * @return ShippingOrderDetailResponse
      */
-    public ShippingOrderDetailResponse listOrders(OrderCriteria orderCriteria);
+    ShippingOrderDetailResponse listOrders(OrderCriteria orderCriteria);
 
     /**
      * Find by id.
@@ -39,6 +39,6 @@ public interface PackageSelfService {
      * @param orderId the order id
      * @return the optional
      */
-    public Optional<ShippingOrderDetail> findOrderById(long orderId);
+    Optional<ShippingOrderDetail> findOrderById(long orderId);
 
 }

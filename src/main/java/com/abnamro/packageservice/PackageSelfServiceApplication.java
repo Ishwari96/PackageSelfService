@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * main class
+ * The main class
  */
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.abnamro.packageservice.repository")
 @EnableFeignClients(basePackages = "com.abnamro.packageservice.client")
-public class PackageServiceApplication {
+public class PackageSelfServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PackageServiceApplication.class, args);
+        SpringApplication.run(PackageSelfServiceApplication.class, args);
     }
 
 }

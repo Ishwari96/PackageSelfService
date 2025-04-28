@@ -41,7 +41,7 @@ public class PackageSelfServiceImpl implements PackageSelfService{
      * Creates a new ShippingOrder
      * @param order ShippingOrder the shipping order
      * @return Shipping order response
-     * @throws PackageServiceException
+     * @throws PackageServiceException exception
      */
     public ShippingOrderSuccessResponse createShippingOrder(ShippingOrder order) throws PackageServiceException {
         Response response = shippingClient.createShippingOrder(order);
