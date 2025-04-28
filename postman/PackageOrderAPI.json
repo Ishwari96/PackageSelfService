@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "1528aa5b-0fc6-4aef-8124-650f68eec193",
+		"name": "local Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3293375"
+	},
+	"item": [
+		{
+			"name": "List all orders - Success",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "TestForValidationError",
+						"value": "True",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8443/shippingOrders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"shippingOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8443/shippingOrders/123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"shippingOrders",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create order - Success",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "            {\r\n            \"packageName\": \"ABN Amro Gift\",\r\n            \"packageSize\": \"S\",\r\n            \"postalCode\": \"1111AB\",\r\n            \"streetName\": \"Amstel Laan\",\r\n            \"receiverName\": \"John\"\r\n            }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8443/shippingOrders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"shippingOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create order - Validation Error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"packageName\": \"ABN Amro Gift\",\r\n    \"packageSize\": \"\",\r\n    \"postalCode\": \"1111AB\",\r\n    \"streetName\": \"Amstel Laan\",\r\n    \"receiverName\": \"John\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8443/shippingOrders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"shippingOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create order - Conflict Error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"packageName\": \"AlreadyTakenName\",\r\n    \"packageSize\": \"S\",\r\n    \"postalCode\": \"1111AB\",\r\n    \"streetName\": \"Amstel Laan\",\r\n    \"receiverName\": \"John\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8443/shippingOrders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"shippingOrders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

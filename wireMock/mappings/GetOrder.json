@@ -1,0 +1,15 @@
+{
+			"request": {
+				"method": "GET",
+				"urlPathTemplate": "/shippingOrders/{orderID}"
+			},
+			"response": {
+				"status": 200,
+				"bodyFileName": "../__files/Order.json",
+				"headers": {
+					"Content-Type": "application/json",
+					"X-Correlation-ID": "0f8f9e96-9ecb-431d-8f17-aedb8a9c15a5",
+					"Request-Id": "123456789"
+				}
+			}
+}		

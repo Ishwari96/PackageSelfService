@@ -1,0 +1,11 @@
+{
+			"packageId": "123456",
+			"packageName": "ABN Amro Gift",
+			"packageSize": "S",
+			"postalCode": "1111AB",
+			"streetName":  "Amstel Laan" ,
+			"receiverName": "John",
+			"orderStatus": "IN_PROGRESS",
+			"expectedDeliveryDate": "05-05-2025"
+}		
+		

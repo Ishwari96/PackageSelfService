@@ -1,0 +1,55 @@
+{
+    "mappings": [
+		{
+			"request": {
+				"method": "POST",
+				"url": "/shippingOrders/OrderPackage"
+			},
+			"response": {
+				"status": 201,
+				"bodyFileName": "../__files/OrderPackageSuccess.json",
+				"headers": {
+					"Content-Type": "application/json",
+					"Location": "/shippingOrders/12345",
+					"X-Correlation-ID": "0f8f9e96-9ecb-431d-8f17-aedb8a9c15a5",
+					"Request-Id": "123456789"
+				}
+			}
+		},
+		{
+			"request": {
+				"method": "POST",
+				"url": "/shippingOrders/OrderPackage",
+				 "bodyPatterns" : [ {
+					"equalToJson" : {"packageName": "ABN Amro Gift","packageSize": "", "postalCode": "1111AB", "streetName": "Amstel Laan","receiverName": "John" }
+					} ]
+
+			},
+			"response": {
+				"status": 400,
+				"bodyFileName": "../__files/OrderPackageValidationError.json",
+				"headers": {
+					"Content-Type": "application/json",
+					"Request-Id": "333444"
+				}
+			}
+		},
+		{
+			"request": {
+				"method": "POST",
+				"url": "/shippingOrders/OrderPackage",
+				 "bodyPatterns" : [ {
+					"equalToJson" : {"packageName": "AlreadyTakenName","packageSize": "S", "postalCode": "1111AB", "streetName": "Amstel Laan","receiverName": "John"}
+					} ]
+				},
+			"response": {
+				"status": 409,
+				"bodyFileName": "../__files/OrderPackageAlreadyTakenError.json",
+				"headers": {
+					"Content-Type": "application/json",
+					"Request-Id": "555444"
+				}
+			}
+		}
+  ]
+}		
